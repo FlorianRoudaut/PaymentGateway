@@ -29,8 +29,8 @@ namespace Gateway.Authentication.Controllers
         public async Task<IActionResult> Login([FromBody]AuthenticateMerchant command)
             => Json(await _authenticateService.LoginAsync(command.Login, command.Password));
 
-        [HttpPost("createmerchant")]
-        public async Task CreateMerchant([FromBody]CreateMerchant command)
+        [HttpPost("createuser")]
+        public async Task CreateUser([FromBody]CreateUser command)
         {
                 await _authenticateService.RegisterAsync(command.Login, command.Password,
                     command.Name, command.AcquiringBank);

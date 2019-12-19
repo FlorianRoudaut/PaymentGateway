@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "9b48ba3e-3bc8-451c-a6d1-7b32033e291b",
+		"name": "PaymentGateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post Payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZDBmMDUzZS02NzUxLTQyOGUtYWQyYy1hNjUyMWQ5MTk1YjIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJpYXQiOjE1NzY1MDczMTksImV4cCI6MTU4MjUwNzMxOSwidW5pcXVlX25hbWUiOiJlZDBmMDUzZS02NzUxLTQyOGUtYWQyYy1hNjUyMWQ5MTk1YjIifQ.9vv50YaR15K8QT8tjVCp9iu16d7prMpjGcJZrFlpZmI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"merchantname\": \"Disney\",\n    \"cardnumber\": \"1234-4567-8910-1232\",\n    \"Cvv\": \"987\",\n    \"expirymonth\": 12,\n    \"expiryyear\": 31,\n    \"amount\": 45,\n    \"currency\": \"eur\",\n    \"cardholdername\": \"M. Santa Claus\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/process",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"process"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Browse all history",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmMzY0MTFjOS1hNmM0LTQ4NzMtYTBkYS01MmUyMDIzOGMwZjciLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJpYXQiOjE1NzY3NTk4NTgsImV4cCI6MTU4Mjc1OTg1OCwidW5pcXVlX25hbWUiOiJmMzY0MTFjOS1hNmM0LTQ4NzMtYTBkYS01MmUyMDIzOGMwZjcifQ.PUf-PZ5acIChqtGQll217K3BSpwAqhF_MgiJFrpvTFs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://ec2-35-180-201-10.eu-west-3.compute.amazonaws.com:5051/api/history",
+					"protocol": "http",
+					"host": [
+						"ec2-35-180-201-10",
+						"eu-west-3",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"history"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Payment not validated",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"merchantname\": \"Amazon\", \n\"currency\":\"eur\",\n\"cardholdername\":\"M. Santa Claus\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/process",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"process"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Payment Failed",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"merchantname\": \"Apple\", \n\"currency\":\"eur\",\n\"cardholdername\":\"M. Santa Claus\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/process",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"process"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Payment details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZDBmMDUzZS02NzUxLTQyOGUtYWQyYy1hNjUyMWQ5MTk1YjIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJpYXQiOjE1NzY0NDM5NzksImV4cCI6MTU4MjQ0Mzk3OSwidW5pcXVlX25hbWUiOiJlZDBmMDUzZS02NzUxLTQyOGUtYWQyYy1hNjUyMWQ5MTk1YjIifQ.ECFtZhahqrfNky6muPMv7vV5ucM_xLAJkL3Zfuqw4Zc",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5051/api/process/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"process",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateMerchant",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"login\": \"Disney\", \n\"name\": \"Disney\"\n,\"password\":\"1234\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5056/createmerchant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5056",
+					"path": [
+						"createmerchant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Access-Control-Request-Headers",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"login\": \"Disney\", \n\"password\":\"1234\"}"
+				},
+				"url": {
+					"raw": "http://localhost:5056/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5056",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

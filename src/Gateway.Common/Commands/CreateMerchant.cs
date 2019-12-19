@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Gateway.Common.Commands
 {
-    public class CreateMerchant : ICommand
+    public class CreateUser : ICommand
     {
         public string Login { get; set; }
 
