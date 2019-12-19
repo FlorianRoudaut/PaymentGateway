@@ -32,7 +32,19 @@ MongoDb will be used for data storage because it is a high availability and perf
 
 The overall services architecture can be found in the folder specs/Backend Architecture.png
 
-### List of endpoints
+### Process a payment
+The payment gateway provide merchants with a way to process a payment. To do this, the merchant should be able to submit a request to the payment gateway. A payment request should include appropriate fields such as the card number, expiry month/date, amount, currency, and cvv.
+The PiggyBank behavior is simulated in the PiggyBank.Api, for simplicity the API is just a dll import not a web API.
+
+*DataFlow*
+1) The merchant sends a query to the API Gateway
+2) The API Gateway sends a ProccessPayment message on the MQ bus
+3) The Processing service catches the payment request message, if there is an Acquirer mapped to the merchant it sends a message to the service reponsible for this Acquirer on the bus. Here we handle on messages for "Piggy Bank"
+4) The PiggyConnector Service catches the message, connects to the acquiring bank API to validate the payment. Then it sends a Payment Processed.
+5) The PaymentHistory Service catches the PaymentProcessed event saves an entry in db
+6) The API gateway cache saves a summary of this Payment
+
+An image can be found in specs/Process Payment DataFlow.png
 
 ### DataFlows
 
