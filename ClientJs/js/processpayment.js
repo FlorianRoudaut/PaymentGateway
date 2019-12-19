@@ -16,9 +16,16 @@ form.addEventListener("submit", function (e) {
     var cardholder = form.elements.cardholder.value;
     var amount = form.elements.amount.value;
     var currency = form.elements.currency.value;
-    var json = {"CardNumber":card, "Cvv":cvv, "ExpiryMonth":expirymonth, "ExpiryYear":expiryyear,
-    "CardHolderName":cardholder, "Amount":amount, "Currency":currency };
-    ajaxJsonPost("http://localhost:5051/api/process",json,console.log);
+    var json = {
+    "cardnumber": card,
+    "Cvv": cvv,
+    "expirymonth": parseInt(expirymonth),
+    "expiryyear": parseInt(expiryyear),
+    "amount": parseFloat(amount),
+    "currency": currency,
+    "cardholdername": cardholder
+};
+    ajaxJsonPost("http://ec2-35-180-201-10.eu-west-3.compute.amazonaws.com:5051/api/process",json,console.log);
     e.preventDefault();
 });
 
@@ -41,5 +48,5 @@ function ajaxJsonPost(url, jsonContent, callback) {
     });
     var content = JSON.stringify(jsonContent);
     console.log("content : "+content);
-    req.send(jsonContent);
+    req.send(content);
 }

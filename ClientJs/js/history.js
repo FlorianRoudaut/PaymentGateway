@@ -6,7 +6,7 @@ var _table_ = document.createElement('table'),
   _th_ = document.createElement('th'),
   _td_ = document.createElement('td');
 
-ajaxGet("http://localhost:5051/api/history",buildHtmlTable)
+ajaxGet("http://ec2-35-180-201-10.eu-west-3.compute.amazonaws.com:5051/api/history",buildHtmlTable)
 
 function ajaxGet(url, callback) {
     var req = new XMLHttpRequest();

@@ -4,9 +4,9 @@ form.addEventListener("submit", function (e) {
     var login = form.elements.login.value;
     var pwd = form.elements.pwd.value;
     var json = {"login":login, "password":pwd};
-    ajaxJsonPost("http://localhost:5056/login",json,storeJwtToken);
+    ajaxJsonPost("http://ec2-35-180-201-10.eu-west-3.compute.amazonaws.com:5052/login",json,storeJwtToken);
     e.preventDefault();
-    window.location.assign("history.html");
+	setTimeout(showHistory, 1000);
 });
 
 
@@ -28,11 +28,17 @@ function ajaxJsonPost(url, jsonContent, callback) {
     });
     var content = JSON.stringify(jsonContent);
     console.log("content : "+content);
-    req.send(jsonContent);
+    req.send(content);
 }
 
 function storeJwtToken(jwtToken)
 {
     document.cookie = jwtToken;
     console.log(jwtToken);
+}
+
+function showHistory()
+{
+    console.log("Show History");
+	window.location.assign("history.html");
 }
