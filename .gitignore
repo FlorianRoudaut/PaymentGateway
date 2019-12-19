@@ -3,3 +3,25 @@
 ################################################################################
 
 /.vs
+/src/.vs/Gateway
+/src/Gateay.PiggyConnector/obj
+/src/Gateway.Api/bin/Debug/netcoreapp3.0
+/src/Gateway.Api/obj
+/src/Gateway.Authentication/bin/Debug/netcoreapp3.0
+/src/Gateway.Authentication/obj
+/src/Gateway.Common/bin/Debug/netcoreapp3.0
+/src/Gateway.Common/obj
+/src/Gateway.History/bin/Debug/netcoreapp3.0
+/src/Gateway.History/obj
+/src/Gateway.Logging/bin/Debug/netcoreapp3.0
+/src/Gateway.Logging/obj
+/src/Gateway.PaymentsProcessing/bin/Debug/netcoreapp3.0
+/src/Gateway.PaymentsProcessing/obj
+/src/Gateway.PiggyConnector/bin/Debug/netcoreapp3.0
+/src/Gateway.PiggyConnector/obj
+/src/PiggyBankApi/bin/Debug/netcoreapp3.0
+/src/PiggyBankApi/obj
+/tests/Gateway.Api.Tests/bin/Debug/netcoreapp3.0
+/tests/Gateway.Api.Tests/obj
+/tests/Gateway.Common.Tests/bin/Debug/netcoreapp3.0
+/tests/Gateway.Common.Tests/obj

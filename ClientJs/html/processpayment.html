@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Payment Gateway Client</title>
+</head>
+
+<body>
+    <h1>Add a new Payment</h1>
+    <p><div></div></p>
+    <button id="history">Previous Payments</button>
+    <p><div></div></p>
+    <form>
+        <p>
+            <label for="card">CardNumber</label> :
+            <input type="text" name="card" id="card" required>
+        </p>
+        <p>
+            <label for="cvv">CVV</label> :
+            <input type="text" name="cvv" id="cvv" required>
+        </p>
+        <p>
+            <label for="expirymonth">ExpiryMonth</label> :
+            <input type="int" name="expirymonth" id="expirymonth" required>
+        </p>
+        <p>
+            <label for="expiryyear">ExpiryYear</label> :
+            <input type="int" name="expiryyear" id="expiryyear" required>
+        </p>
+        <p>
+            <label for="cardholder">CardHolderName</label> :
+            <input type="text" name="cardholder" id="cardholder" required>
+        </p>
+        <p>
+            <label for="amount">Amount</label> :
+            <input type="text" name="amount" id="amount" required>
+        </p>
+        <p>
+            <label for="currency">Currency</label> :
+            <input type="text" name="currency" id="cardholder" required>
+        </p>           
+        <input type="submit" value="Login">
+    </form>
+
+    <script src="../js/processpayment.js"></script>
+</body>
+
+</html>
