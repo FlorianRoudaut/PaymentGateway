@@ -62,14 +62,14 @@ A get API is available at the endpoint GET http://host/api/history it returns a 
 1) The merchant sends a query to the API Gateway to get the history of all his payments
 2) The API Gateway retrieves it from its cache and returns it in a Json file
 
-##Improvements
+## Improvements
 Besides the points discussed below the following improvements could be made :
 - Use Elastic search for logs (ELK stack)
 - Improve the Security wtih secrets management and encryption
 - Add databse consistency Consistency checks, between the Users and merchants db and between the API Gateway db and the history service db
 - Use other types of database management systems. For instance, Redis could be used for API Gateway cache. Redis is storage system that is very efficient for cached data. Since there is a microservice architecture, each service can have a different type of db. In this solution, MongoDB was used everywhere for simplicity.
 
-##Application Logging
+## Application Logging
 For monoliths applications, the log is usually in a log file, but since this solution is distributed, it is better for system monitoring to have all logs in one place. The approach implemented here is to have a service that will receive all the logs and store them in a db.
 
 Log cases : https://docs.microsoft.com/fr-fr/azure/architecture/microservices/logging-monitoring
@@ -77,17 +77,17 @@ Log Service : https://livebook.manning.com/book/microservices-in-net-core/chapte
 
 A potential improvement could be to reduce the priority of logs messages on the bus so that the log messages do not jam the queue. https://www.rabbitmq.com/priority.html
 
-##Application metrics
+## Application metrics
 Each service has a simple GET endpoint, this allow to add a mechanism that will poll the services to see if they are still alive. 
 
 Improvements could be to have metrics for each service, like the number of pending messages, the number of messages processed over the last x minutes, the number of errors over the last x minutes, the size of the database.
 
 Since RabbitMQ is the link between each microservice, it is key to monitor its performances. A first approach can be to look at the RabbitMQ web console here http://localhost:15672/#/
 
-##Containerization
+## Containerization
 Currently this solution is self hosted. Since the solution is written in .Net Core it can be conainerized, for instance in Docker. All the services can be ran together using the Docker Compose functionnality. Moving this kind of solution to Docker is explained here https://dotnet.microsoft.com/download/e-book/microservices-architecture/pdf
 
-##Authentication
+## Authentication
 Authentication has been implemented in this solution using the JWT framework. https://jwt.io/
 
 First of all, for each merchant needs to create a user. They can create a user using endpoint POST http://gateway.authentication/createuser with a json file like this {"login": "Disney", "name": "Disney","password": "1234","acquiringbank" : "PiggyBank"}
@@ -99,31 +99,31 @@ The user is saved in the Users DB with the password hashed
 3) The client calls the API Gateway and puts the JWT in the header of any the HTTP query. If the JWT is valid, the API Gateway process the qery, if not it returns an error HTTP 401
 4) The rest of the business workflow unfolds.
 
-##API Client
+## API Client
 A Proof Of Concept API Client has been implemented in the folder ClientJs. The client is done using html and JavaScript. It queries the Gateway API using AJAX queries. The goal of the client is just to prove that the backend system is working and can be queried using other technologies than .Net Core. However no UI design/CSS has been done yet.
 
 The client is based on three pages : a login page, a page to see the past payments of the user and a page to process a new payment.
 
 It can be launched by opening the file ClientJs/hmtl/login.html
 
-##Deployment
+## Deployment
 The whole system has been deployed on the server ec2-35-180-201-10.eu-west-3.compute.amazonaws.com 
 MongoDb and RabbitMQ are installed on the server. One instance of each service is launched in a self-hosted mode. The web client is hosted on IIS.
 Since this is a free tier server from Amazon, it has only one core and 1Go of RAM, so it can be a bit slow when hosting 6 microservices and rabbitmq and mongodb. Each component can run on the different server or could be hosted on a Amazon ECS https://aws.amazon.com/getting-started/tutorials/deploy-docker-containers/
 
-##Build Script/CI
+## Build Script/CI
 A build script is located in scripts/build.bat . This script builds the whole solution. 
 There is also a script called run-tests.bat that runs Automated tests from the Gateway.Api.Tests project, based on NUnit or other tests to come.
 Based on that, a CI Tool like TravisCI https://travis-ci.com/ or Jenkins https://jenkins.io/ or GitLab  https://about.gitlab.com/ or any other can be plugged on github hooks and rebuild, check the automated tests and deploy the soltuion.
 
-##Performance Testing
+## Performance Testing
 No performance testing has been done yet. The key performance metric is the throughput. To test this metric, a client that sends x messages per seconds can be developped. 
 
-##Install and Use
+## Install and Use
 ###Prerequisites
 .Net core must be installed on the machine, along with MongoDB and RabbitMQ.
 
-###Instructions
+### Instructions
 Clone the repository
 Build the solution using Visual Studio or the batch script scripts/build.bat
 Run the solution using Visual Studio or the launch script scripts/launch-services.bat. This will launch the 6 services in a self hosted mode. 
