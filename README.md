@@ -34,6 +34,28 @@ MongoDb will be used for data storage because it is a high availability and perf
 
 The overall services architecture can be found in the folder specs/Backend Architecture.png
 
+### Multiple Micro Services
+The methodology used to model the services was to use DDD approach and use Bonded Contexts for each services. https://martinfowler.com/bliki/BoundedContext.html
+
+**API Gateway**
+The API Gateway is the front API that the clients will consume. It is easier for the clients to consume only one address.
+
+**Authentication Service**
+Handles the users, authentication, stores the passwords and validate if the users can connect.
+
+**Payments Processing Service**
+This service is responsible to handle any business logic related to a payment. For now it is mostly dispatching the payment request to the correct Acquirer
+
+**Piggy Connector Service**
+The role of this service is to hnadle any interaction with Piggy Bank
+
+**History Service**
+This service saves all the payments processed or not.
+
+**Logging Service**
+Saves all the logs related to any event in the Gateway system. From any authentication or API call to all the errors that can occur
+
+
 ### Process a payment
 The payment gateway provide merchants with a way to process a payment. To do this, the merchant should be able to submit a request to the payment gateway. A payment request should include appropriate fields such as the card number, expiry month/date, amount, currency, and cvv.
 The PiggyBank behavior is simulated in the PiggyBank.Api, for simplicity the API is just a dll import not a web API.
@@ -110,6 +132,11 @@ It can be launched by opening the file ClientJs/hmtl/login.html
 The whole system has been deployed on the server ec2-35-180-201-10.eu-west-3.compute.amazonaws.com 
 MongoDb and RabbitMQ are installed on the server. One instance of each service is launched in a self-hosted mode. The web client is hosted on IIS.
 Since this is a free tier server from Amazon, it has only one core and 1Go of RAM, so it can be a bit slow when hosting 6 microservices and rabbitmq and mongodb. Each component can run on the different server or could be hosted on a Amazon ECS https://aws.amazon.com/getting-started/tutorials/deploy-docker-containers/
+
+## Encryption
+With ASP Net core, it is easy to encrypt the data exchanged using https. https://docs.microsoft.com/en-gb/aspnet/core/security/enforcing-ssl?view=aspnetcore-3.1&tabs=visual-studio
+Eventhough, it is possible to have a certificate for free here https://zerossl.com/, I do not have a domain name. Thus I could not setup the deployed app with a real certificate.
+
 
 ## Build Script/CI
 A build script is located in scripts/build.bat . This script builds the whole solution. 
