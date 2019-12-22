@@ -1,0 +1,1 @@
+dotnet test ../tests/Gateway.Api.Tests/Gateway.Api.Tests.csproj

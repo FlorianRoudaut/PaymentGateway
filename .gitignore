@@ -25,3 +25,4 @@
 /tests/Gateway.Api.Tests/obj
 /tests/Gateway.Common.Tests/bin/Debug/netcoreapp3.0
 /tests/Gateway.Common.Tests/obj
+/src/PiggyBankApi/bin/Release/netcoreapp3.0
